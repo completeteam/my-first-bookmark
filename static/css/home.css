@@ -24,7 +24,7 @@ section.container{
 /* 3. 배너 초기 위치 설정 */
 section ul.banner_mask{
      position: absolute;
-     width: 2000px;
+     width: 1248px;
      height: 366px;
      /* 4. 배너 숨기기 */
      overflow: hidden;
@@ -86,5 +86,5 @@ input:checked ~ .banner_mask li {
 }
 @-webkit-keyframes myfirst {
     0%   {left:0px;}
-    100% {left:-2000px;}
+    100% {left:-1248px;}
 }

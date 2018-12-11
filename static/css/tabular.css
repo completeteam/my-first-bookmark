@@ -92,7 +92,9 @@ h1 {
 .archive_tr{
     border-bottom: 1px solid #d8d8d8;
 }
-
+#post_tr{
+    border-bottom: 1px solid #d8d8d8;
+}
 
 /*      post_search      */
 #search_table{

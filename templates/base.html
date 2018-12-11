@@ -15,17 +15,17 @@
 <div id="header">                   <!--헤더 영역-->
   <h2 class="maintitle"><a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" width="12%" height="15%"></a></h2>
   {% if user.is_active %} <!-- 로그인되면 user.is_active() 함수가 참을 반환-->
-        <h4 class="welcome">환영합니다,
+        <span><h4>환영합니다,
             <!-- firstof 태그는 뒤에 나오는 인자들 중에서 False 아닌 첫 인자를 선택함 -->
             <strong>{% firstof user.get_short_name user.get_username %}</strong>님. /
             <a href="{% url 'password_change' %}">비밀번호 변경</a> /
             <a href="{% url 'logout' %}">로그아웃</a>
-        </h4>
+        </h4></span>
     {% else %}
-        <h4 class="welcome">환영합니다, 손님. /
+        <span><h4>환영합니다, 손님. /
             <a href="{% url 'login' %}">로그인</a> /
             <a href="{% url 'register' %}">회원가입</a>
-        </h4>
+        </h4></span>
     {% endif %}
 </div>
 
