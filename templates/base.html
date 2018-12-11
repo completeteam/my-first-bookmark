@@ -2,49 +2,50 @@
 <html lang="ko">    <!--언어는 한국어로 지정--><!---->
 
 <head>              <!--페이지 타이틀과 css 파일 2개를 연결-->
-<title>{% block title %}Django Web Programming{% endblock %}</title>
-
+<title>{% block title %}Django Web Programming{% endblock %}</title> <!--이렇게 써놨지만 자식마다 다르게 바꿈, 부모의 틀-->
 {% load staticfiles %}  <!--정적 파일인 css 연결하기 위하여, staticfiles를 로드-->
-<!--스타일시트 css/base.css 작성이 필요함-->
-<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "css/base.css" %}{% endblock %}" />
-<link rel="stylesheet" type="text/css" href="{% block extrastyle %}{% endblock %}" />
-
+<!--스타일시트 css/base.css 작성이 필요함, css/base.css 에서 슬래시 주의-->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "css/base.css" %}{% endblock %}" />
+    <link rel="stylesheet" type="text/css" href="{% block extrastyle %}{% endblock %}" />
 </head>
 
 <body>              <!--바디 영역은 4 영역(헤더/메뉴/콘텐츠/풋터)으로 구성-->
 
 <div id="header">                   <!--헤더 영역-->
-  <h2 class="maintitle">HOLLYS coffee</h2>
-  <h4 class="welcome">반갑습니다. <a href="#">kkchy12</a>님.  /
-              <a href="#">비밀번호 변경</a> /
-              <a href="#">로그아웃</a>
-  </h4>
+  <h2 class="maintitle"><a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" width="12%" height="15%"></a></h2>
+  {% if user.is_active %} <!-- 로그인되면 user.is_active() 함수가 참을 반환-->
+        <h4 class="welcome">환영합니다,
+            <!-- firstof 태그는 뒤에 나오는 인자들 중에서 False 아닌 첫 인자를 선택함 -->
+            <strong>{% firstof user.get_short_name user.get_username %}</strong>님. /
+            <a href="{% url 'password_change' %}">비밀번호 변경</a> /
+            <a href="{% url 'logout' %}">로그아웃</a>
+        </h4>
+    {% else %}
+        <h4 class="welcome">환영합니다, 손님. /
+            <a href="{% url 'login' %}">로그인</a> /
+            <a href="{% url 'register' %}">회원가입</a>
+        </h4>
+    {% endif %}
 </div>
 
 <div id="menu">                     <!--메뉴 영역-->
-  <li><a href="{% url 'home' %}">홈</a></li>
-    <li><a href="{% url 'bookmark:index' %}">MENU</a>             <!--드롭다운 메뉴 구성-->
-      <ul>
-          <li><a href="#">Caffeine</a></li>
-          <li><a href="#">Non caffeine</a></li>
-          <li><a href="#">Beverage</a></li>
-      </ul>
+  <li><a href="{% url 'home' %}">HOME</a></li>
+ <li class="menu1"><a href="{% url 'bookmark:index' %}">HOLLYS NEWS</a>    <!--다연수정-->
   </li>
-  <li><a href="#">HOLLYS NEWS</a>             <!--드롭다운 메뉴 구성-->
-      <ul>
-          <li><a href="#">이달의 이벤트</a></li>
-          <li><a href="#">공지사항</a></li>
-      </ul>
+  <li><a href="{% url 'blog:index' %} ">HOLLYS NOTICE</a>   <!--다연수정-->
+    <ul>
+          <li><a href="{% url 'bookmark:index' %}">이달의 이벤트</a></li>
+          <li><a href="{% url 'bookmark:index' %}">공지사항</a></li>
+    </ul>
   </li>
-  <li><a href="{% url 'blog:index' %}">HOLLYS EVENT</a></li>
-  <li><a href="#">STORE</a></li>
-  <li><a href="{% url 'blog:search' %}">검색</a></li>     <!--ch09 수정 1/1-->
-  <li><a href="{% url 'blog:post_archive' %}">블로그 아카이브</a></li>
-  <li><a href="{% url 'admin:index' %}">관리자</a></li>
+  <li><a href="{% url 'photo:index' %}">MENU</a></li>
+  <li><a href="{% url 'blog:post_archive' %}">STORE</a></li>  <!--다연수정-->
+  <li><a href="{% url 'blog:search' %}">SEARCH</a></li>    <!--다연수정-->
+  <li><a href="{% url 'admin:index' %}">ADMIN</a></li>    <!--다연수정-->
 </div>
 
-{% block content %}{% endblock %}   <!--블록 태그로 콘텐츠 영역 정의 -->
+{% block content %}{% endblock %}   <!--블록 태그로 콘텐츠 영역 정의 --> <!--지금은 부모니까 정의 안 함, 자식이 바꿀 것-->
 
 {% block footer %}{% endblock %}    <!--블록 태그로 풋터 영역 정의-->
 

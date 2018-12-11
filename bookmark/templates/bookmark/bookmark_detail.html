@@ -1,12 +1,27 @@
-  {% extends "base.html" %}  <!--반드시 첫 줄에 있어야 함-->
-  {% block title %}할리스 음료 상세보기{% endblock %}
-  {% block content %}
-      <div id="content"> <!--base.css 내부의 div#contents 스타일 적용-->
-          <h1>{{ object.title }}</h1>
-          <ul>
-              <li>
-                  URL: <a href="{{ object.url }}">{{ object.url }}</a>
-              </li>
-          </ul>
-      </div>
-  {% endblock %}
+{% extends "base.html" %}  <!--반드시 첫 줄에 있어야 함-->
+{% block title %}HOLLYS NEWS{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/event.css" %}{% endblock %}
+{% block content %}
+  <div id="content"> <!--base.css 내부의 div#contents 스타일 적용-->
+
+    <h1 id="event">HOLLYS NEWS</h1>
+
+    <div class="event_view_wr">
+        <!-- 이벤트 list -->
+        <div class="event_listBox03">
+            <dl class="event_list">
+                <h3><dt><span style="">{{ object.title }}</span> <span></span></dt></h3>
+            </dl>
+        </div>
+        <h2>뉴스 바로가기:</h2>
+        <h1><a href="{{ object.url }}">{{ object.url }}</a></h1>
+    </div>
+
+    <!-- button -->
+    <div class="btn_wr01">
+        <a class="btnType01" href="{% url 'bookmark:index' %}">목록</a>
+    </div>
+  </div>
+
+{% endblock %}

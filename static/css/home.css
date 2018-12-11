@@ -6,7 +6,85 @@ div#content_home {
 }
 
 div#homeimg {
-  background: #ddd;
-  padding: 5px 0 1px 0;
+  padding: 20px 0 1px 0;
   text-align: center;
+}
+
+
+
+
+section.container{
+    position: relative;
+    width:1248px;
+    height:366px;
+    top: 30px;
+    margin: 0 auto;
+}
+
+/* 3. 배너 초기 위치 설정 */
+section ul.banner_mask{
+     position: absolute;
+     width: 2000px;
+     height: 366px;
+     /* 4. 배너 숨기기 */
+     overflow: hidden;
+}
+section ul.banner_mask li{
+    position: absolute;
+    top:0px;
+    left:1000px;
+}
+
+/* 5. 라벨 버튼 설정 */
+section.container label{
+    float:left;
+    position:relative;
+    left:550px;
+    top: 380px;
+    width:12px;
+    height:12px;
+    margin-left: 5px;
+    text-align: center;
+    border-radius: 13px;
+    line-height: 16px;
+    cursor:pointer;
+    background-color: #E0E0E0;
+    /* 7. 배너광고보다 항상 위에 표시  */
+    z-index: 1000;
+}
+
+/* 6. 선택된 라벨버튼 표시 */
+section.container input.banner_input1:checked ~ label.label_btn1,
+section.container input.banner_input2:checked ~ label.label_btn2,
+section.container input.banner_input3:checked ~ label.label_btn3
+{
+    background-color: #C70303;
+    color:white;
+}
+
+/* 8. 라디오버튼 일단 숨기자.*/
+section.container input
+{
+    display: none;
+}
+
+
+/* 9. 라벨버튼을 클릭하면 해당되는 배너(li) 보이게 하기  */
+section.container input.banner_input1:checked ~ .banner_mask li:nth-child(1),
+section.container input.banner_input2:checked ~ .banner_mask li:nth-child(2),
+section.container input.banner_input3:checked ~ .banner_mask li:nth-child(3)
+{
+    -webkit-animation:none; /* 10-1 기존 애니메이션 제거 후 이동 */
+    -webkit-transition:left 1s ease-in-out;
+    left:0px;
+}
+
+/* 10-2. 기존 배너 왼쪽으로 사라지게 하기  */
+input:checked ~ .banner_mask li {
+    -webkit-animation: myfirst 1s ease-in-out;
+    animation: myfirst 1s ease-in-out;
+}
+@-webkit-keyframes myfirst {
+    0%   {left:0px;}
+    100% {left:-2000px;}
 }

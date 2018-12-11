@@ -20,15 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'dr6w6(6q%2yd+n%ub)w#iih0lh%5g57m!eq32!4+%4=3ki%unh'
+SECRET_KEY = '7g%-j^c_k-klx#egk2(@w&owgx1@a_p6@2&p4^s((612_dx^u)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
     '.pythonanywhere.com',
+    'localhost',
 ]
 
 
@@ -42,17 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookmark.apps.BookmarkConfig',     # bookmark 앱을 추가 등록
-    'blog.apps.BlogConfig',              # blog 앱을 추가 등록
+    'blog.apps.BlogConfig',
     'tagging.apps.TaggingConfig',       # (ch07) tagging 앱을 추가 등록
     'disqus',                           # (ch08) 1/4
     'django.contrib.sites',             # (ch08) 2/4
     'photo.apps.PhotoConfig',                  # (ch10) 1/1
 ]
-DISQUS_WEBSITE_SHORTNAME = 'completeteam'   # (ch08) 3/4 [Website Name]
-SITE_ID = 1                             # (ch08) 4/4 django.contrib.sites를 등록할 때 사용하는 값, 임의로 지정하지만, 중복되지 않도록!
-MEDIA_URL = '/media/'                          # 업로드된 사진을 저장할 폴더
-MEDIA_ROOT = [os.path.join(BASE_DIR, 'media')] # 업로드된 사진을 저장할 폴더
 
+DISQUS_WEBSITE_SHORTNAME = 'dowhatidream'   # (ch08) 3/4 [Website Name]
+SITE_ID = 1                                  # (ch08) 4/4 django.contrib.sites를 등록할 때 사용하는 값, 임의로 지정하지만, 중복되지 않도록!
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -69,7 +66,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # 교과서 39 쪽처럼 수정
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], #이거 때문에 디렉토리 이름 templates로 만듦
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,10 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'ko-kr'# 'en-us' # 수정 (교과서 40 쪽)
+LANGUAGE_CODE = 'ko-kr'
 
-# TIME_ZONE = 'UTC'
-TIME_ZONE = 'Asia/Seoul'         # 수정 (교과서 40 쪽)
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -134,7 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]   # 추가 (교과서 40 쪽)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] # 이것 때문에 css 파일을 static 이라는 디렉토리 파일로 만듦
 
-MEDIA_URL = '/media/'                             # 추가 (교과서 40 쪽)
-MEDIA_ROOT = [os.path.join(BASE_DIR, 'media')]    # 추가 (교과서 40 쪽)
+MEDIA_URL = '/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
+LOGIN_REDIRECT_URL = '/'

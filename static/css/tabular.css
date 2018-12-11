@@ -39,9 +39,73 @@ a:visited{
 
 }
 
-.centered { text-align: center;}
-.leftpadding30percent { padding-left: 30%; }
+#tbl .centered { text-align: center;}
+.leftpadding30percent { padding-left: 42%; }
 
 h1 {
+    text-align: center;
+}
+/****************************post_all**********************************************/
+.blog_notice{
+    text-align: left;
+    margin-left: 230px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.blog_title{
+    width: 60%;
+}
+
+#blog_tbl{
+    border-collapse: collapse;
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+
+}
+
+.centered{
+    text-align: center;
+}
+/*      POST_ARCHIVE      */
+.archive{
+    margin-right:70%;
+    margin-top:5%;
+}
+.archive_year{
+    margin-left:15%;
+}
+
+/*  post_archive  */
+#archive_table{
+    border-collapse: collapse;
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+
+.archive_tr{
+    border-bottom: 1px solid #d8d8d8;
+}
+
+
+/*      post_search      */
+#search_table{
+    border-collapse: collapse;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+.search_tr{
+    border-bottom: 1px solid #d8d8d8;
+}
+.search_form{
     text-align: center;
 }

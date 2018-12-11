@@ -1,22 +1,6 @@
-{#{% extends "base.html" %}                   <!--base.html을 상속받는다고 선언-->#}
-{##}
-{#{% block title %}home.html{% endblock %}    <!--title 블록 재정의-->#}
-{##}
-{#{% block content %}                         <!--content 블록 재정의-->#}
-{#  <div id="content">#}
-{#      This is CONTENT area.#}
-{#  </div>#}
-{#{% endblock content %}#}
-{##}
-{#{% block footer %}                          <!--footer 블록 재정의-->#}
-{#  <div id="footer">#}
-{#      This is FOOTER area.#}
-{#  </div>#}
-{#{% endblock footer %}#}
-
 {% extends "base.html" %}                   <!--base.html을 상속받는다고 선언-->
 
-{% block title %}할리스 웹 사이트{% endblock %}    <!--title 블록 재정의-->
+{% block title %}HOLLYS SITE{% endblock %}    <!--title 블록 재정의-->
 
 <!--정적 파일인 css 연결하기 위하여, staticfiles를 로드-->
 {% load staticfiles %}
@@ -25,46 +9,101 @@
 
 {% block content %}                         <!--content 블록 재정의-->
 
+<script>
+  function init(){
+	  slidingbanner();
+  }
+  var n = 0;
+  function slidingbanner(){
+	  if( n==4) n=0;
+	  var conbox = document.getElementById("box");
+	  var ckbboxs = conbox.getElementsByTagName("input");
+	  ckbboxs[n].checked = 'true';
+	  n++;
+	  setTimeout(slidingbanner, 2000);
+  }
+</script>
+
 <div id="content_home">     <!--content_home 영역 정의-->
 
   <div id="homeimg">      <!--homeimg 영역 정의-->
       <!--<a href="/"><img src="{% static 'img/django-actor-big.jpg' %}" style="height:256px;"/></a>-->
-      <a href="/"><img src="{% static 'img/hollys.jpg' %}" style="height:350px;"/></a>
-      <h4 style="margin: 0;">할리스 기업의 공식 홈페이지입니다.</h4>
+      <section class="container" id="box">
+         <input id="select1" name="radioBanner" type="radio" class="banner_input1" checked="checked"/>
+         <label for="select1" class="label_btn1"></label>
+
+         <input id="select2" name="radioBanner" type="radio" class="banner_input2" />
+         <label for="select2" class="label_btn2"></label>
+
+         <input id="select3" name="radioBanner" type="radio" class="banner_input3" />
+         <label for="select3" class="label_btn3"></label>
+
+         <ul class="banner_mask">
+              <li>
+                <a href="#"><img src="{% static 'img/main1.jpg' %}" alt="첫 번째 배너이미지" width="1248px" height="366px" /></a>
+              </li>
+              <li>
+                <a href="#"><img src="{% static 'img/main2.jpg' %}" alt="두 번째 배너이미지" width="1248px" height="366px" /></a>
+              </li>
+              <li>
+                <a href="#"><img src="{% static 'img/main3.jpg' %}" alt="세 번째 배너이미지" width="1248px" height="366px" /></a>
+              </li>
+         </ul>
+
+      </section>
+
+
+      <!--<a href="/"><img src="{% static 'img/main2.jpg' %}" style="height:256px;"/></a>-->
   </div>
-
-  <hr style="margin: 5px 0;">     <!--그림 및으로 5px 간격을 두고 수평선 넣기-->
-
-  <h2>웹 앱 선택</h2>
+    <br><br><br><br><br><br><br><br>
+  <!--<hr style="margin: 5px 0;">     &lt;!&ndash;그림 및으로 5px 간격을 두고 수평선 넣기&ndash;&gt;-->
 
   <table id="applist">
       <tr>
-          <td><b><i><a href="{% url 'bookmark:index' %}">책갈피</a></i><b></td>
-          <td>당신의 책갈피를 등록하고 다른 사람들과 공유할 수 있습니다. 어쩌구 저쩌구. 중얼중얼.</td>
-          <td id="Edit"><i><a href="#">등록</a></i></td>
-          <td id="Edit"><i><a href="#">편집</a></i></td>
+          <td><b><a href="{% url 'bookmark:index' %}">EVENT</a></b></td>
+          <td><b><a href="{% url 'blog:index' %}">HOLLYS NEWS</a></b></td>
+          <td><b><a href="{% url 'photo:index' %}">MENU</a></b></td>
+
       </tr>
 
       <tr>
-          <td><b><i><a href="{% url 'blog:index' %}">게시판</a></i><b></td>
           <td>당신의 게시물을 등록하고 다른 사람들과 공유할 수 있습니다. 어쩌구 저쩌구.</td>
-          <td id="Edit"><i><a href="#">등록</a></i></td>
-          <td id="Edit"><i><a href="#">편집</a></i></td>
+          <td>당신의 사진을 등록하고 다른 사람들과 공유할 수 있습니다. 어쩌구 저쩌구.</td>
+          <td><a href="{% url 'photo:index' %}"><img src="{% static 'img/1.png' %}" width="60%" height="60%"/></a>
+              <td><a href="{% url 'photo:index' %}"><img src="{% static 'img/2.png' %}" width="60%" height="60%"/></a>
+                  <td><a href="{% url 'photo:index' %}"><img src="{% static 'img/3.png' %}" width="60%" height="60%"/></a></td>
+              </td>
+          </td>
+      </tr>
+
+
+      <tr>
+          <td></td>
+          <td></td>
+          <td>&nbsp;&nbsp;밀크티라떼
+              <td>&nbsp;&nbsp;&nbsp;카페라떼
+                  <td>&nbsp;&nbsp;&nbsp;모카라떼</td>
+              </td>
+          </td>
       </tr>
 
       <tr>
-          <td><b><i><a href="#">사진첩</a></i><b></td>
-          <td>당신의 사진을 등록하고 다른 사람들과 공유할 수 있습니다. 어쩌구 저쩌구.</td>
-          <td id="Edit"><i><a href="#">등록</a></i></td>
-          <td id="Edit"><i><a href="#">편집</a></i></td>
+          <td></td>
+          <td></td>
+          <td>
+              <td>
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'photo:index' %}">▶더보기</a></td>
+              </td>
+          </td>
       </tr>
+
   </table>
 </div>
 {% endblock content %}
 
 {% block footer %}                      <!--footer 블록 재정의-->
-<div id="footer">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Copyleft.svg/220px-Copyleft.svg.png"
-       height="12" width="12" /> kkchy12 2018
+<div id="footer"><br>
+    <p class="foot" style="font-size:10px; color: white;">&nbsp;&nbsp;개인정보처리방침 | 서비스이용약관 | 멤버십이용약관 | 고객문의 | 고객설문 | 사이트맵 | BI소개</p>
+    <p class="foot" style="font-size:9px; color: lightgray;">&nbsp;&nbsp;법인명: (주)할리스에프앤비  대표자: 김유진  사업자등록번호 211-87-61044  통신판매업: 제2012-서울강남-01081호  주소: 서울특별시 종로구 율곡로 88 삼환빌딩 8층 (운니동) 대표전화: 02-2188-7100(가맹문의: 1670-4432)  COPYRIGHT (C) HOLLYSCOFFEECo.,Ltd.All Rights Reserved.</p>
 </div>
 {% endblock footer %}

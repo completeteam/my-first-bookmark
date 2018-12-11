@@ -1,6 +1,8 @@
 .tag-cloud {
     width: 80%;
     text-align: center;
+    color: #C70303;
+    text-decoration: none;
 }
 .tag-1 {font-size: 12px;}
 .tag-2 {font-size: 14px;}

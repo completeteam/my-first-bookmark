@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
-{% block title %}장고 게시판 목록{% endblock %}
+{% block title %}HOLLYS NOTICE{% endblock %}
 {% load staticfiles %}
 {% block extrastyle %}{% static "css/tabular.css" %}{% endblock %}
 {% block content %}
     <div id="content">
-        <h1 class="centered">NOTICE</h1>
-        <table id="tbl" >
+        <h1 class="blog_notice">HOLLYS NOTICE</h1>
+        <table id="blog_tbl" >
               <tr>
                   <th>번호</th>
                   <th>구분</th>
-                  <th>제목</th>
-                  <th>최종 수정일</th>
+                  <th class="blog_title">제목</th>
+                  <th>작성일</th>
               </tr>
               {% for post in posts %}
               <tr>
                   <td>{{ post.id }}</td>
                   <td>{{ post.slug }}</td>
                   <td><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></td>
-                  <td>{{ post.modify_date|date:"Y년 m월 d일" }}</td>
+                  <td>{{ post.modify_date|date:"Y-m-d" }}</td>
               </tr>
               {% endfor %}
         </table>
