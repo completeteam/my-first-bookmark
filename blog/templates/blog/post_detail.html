@@ -26,11 +26,11 @@
             <dl class="event_list">
                 <h3><dt><span style="">태그</span> <span></span></dt></h3>
                 <hr class="line">
-                 <h5><dt><span style="">                  {% for tag in tags %}
+                 <dt><span style="">                  {% for tag in tags %}
                       <a href="{% url 'blog:tagged_object_list' tag.name %}">
                         {{tag.name}}&nbsp;&nbsp;
                       </a>
-                  {% endfor %}</span> <span></span></dt></h5>
+                  {% endfor %}</span> <span></span></dt>
             </dl>
         </div>
         <div class="event_listBox03">
